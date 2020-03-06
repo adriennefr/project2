@@ -76,7 +76,7 @@ module.exports = function (app) {
     });
 
     // Put method to Update Total Wins
-    app.put("/api/todos", function(req, res) {
+    app.put("/api/user/:id", function(req, res) {
 
         // we use where to describe which objects we want to update
         db.user.update({
