@@ -39,7 +39,7 @@ module.exports = function (app) {
 
     // API Routes
     // =========================================================
-    
+
     // Get User Route
     app.get("/api/user/:id", function (req, res) {
         let id = req.params.id
@@ -76,8 +76,24 @@ module.exports = function (app) {
     });
 
     // Put method to Update Total Wins
-    // check todos app
-    app.put()
+    app.put("/api/todos", function(req, res) {
+
+        // we use where to describe which objects we want to update
+        db.user.update({
+          totalWins: req.body.totalWins,
+        }, {
+          where: {
+            id: req.body.id
+          }
+        }).then(function(results) {
+          res.json(results);
+        })
+          .catch(function(err) {
+          // Whenever a validation or flag fails, an error is thrown
+          // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+            res.json(err);
+          });
+      });
 
 
 
