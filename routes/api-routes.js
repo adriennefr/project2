@@ -9,32 +9,32 @@ module.exports = function (app) {
     // HTML Routes
     // =============================================================
 
-    app.get("/", function (req, res) {
-        res.render(path.join(__dirname, "../public/landing.html"));
-    });
+    // app.get("/", function (req, res) {
+    //     res.render(path.join(__dirname, "../public/landing.html"));
+    // });
 
-    app.get("/login", function (req, res) {
-        res.render(path.join(__dirname, "../public/login.html"));
-    });
+    // app.get("/login", function (req, res) {
+    //     res.render(path.join(__dirname, "../public/login.html"));
+    // });
 
-    app.get("/signup", function (req, res) {
-        res.render(path.join(__dirname, "../public/signup.html"));
-    });
+    // app.get("/signup", function (req, res) {
+    //     res.render(path.join(__dirname, "../public/signup.html"));
+    // });
 
     app.get("/homepage", function (req, res) {
-        res.render(path.join(__dirname, "../public/homepage.html"));
+        res.render(path.join(__dirname, "../public/homepage.handlebars"));
     });
 
     app.get("/lobby", function (req, res) {
-        res.render(path.join(__dirname, "../public/lobby.html"));
+        res.render(path.join(__dirname, "../public/lobby.handlebars"));
     });
 
     app.get("/questions", function (req, res) {
-        res.render(path.join(__dirname, "../public/questions.html"));
+        res.render(path.join(__dirname, "../public/questions.handlebars"));
     });
 
     app.get("/results", function (req, res) {
-        res.render(path.join(__dirname, "../public/results.html"));
+        res.render(path.join(__dirname, "../public/results.handlebars"));
     });
 
     // API Routes
@@ -76,7 +76,7 @@ module.exports = function (app) {
     });
 
     // Put method to Update Total Wins
-    app.put("/api/todos", function(req, res) {
+    app.put("/api/user/:id", function(req, res) {
 
         // we use where to describe which objects we want to update
         db.user.update({
