@@ -63,13 +63,15 @@ module.exports = function (app) {
         console.log("User Data:");
         console.log(req.body);
         // My hash logic goes here
+        let hashedPassword = create(req.body.password);
+
         db.user.create({
             name: req.body.name,
             username: req.body.username,
-            hased: req.body.hashed,
-            salt: req.body.salt,
+            hased: hashedPassword.hash,
+            salt: hashedPassword.salt,
             avatar: req.body.avatar,
-            totalWins: req.body.totalWins
+            totalWins: 0
         }).then(function (results) {
             res.end();
         });

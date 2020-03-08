@@ -8,6 +8,6 @@ name VARCHAR (20) NOT NULL,
 username VARCHAR (20) NOT NULL,
 hashed TEXT,
 salt TEXT,
-total wins INTEGER (1000),
+total_wins INTEGER (1000),
 PRIMARY KEY (id)
 )
