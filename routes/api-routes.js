@@ -10,7 +10,7 @@ module.exports = function (app) {
     // =============================================================
 
     // app.get("/", function (req, res) {
-    //     res.render(path.join(__dirname, "../public/landing.html"));
+    //     res.render(path.join(__dirname, "../public/index.html"));
     // });
 
     // app.get("/login", function (req, res) {
@@ -22,19 +22,19 @@ module.exports = function (app) {
     // });
 
     app.get("/homepage", function (req, res) {
-        res.render(path.join(__dirname, "../public/homepage.handlebars"));
+        res.render(path.join(__dirname, "../view/homepage.handlebars"));
     });
 
     app.get("/lobby", function (req, res) {
-        res.render(path.join(__dirname, "../public/lobby.handlebars"));
+        res.render(path.join(__dirname, "../view/lobby.handlebars"));
     });
 
     app.get("/questions", function (req, res) {
-        res.render(path.join(__dirname, "../public/questions.handlebars"));
+        res.render(path.join(__dirname, "../view/questions.handlebars"));
     });
 
     app.get("/results", function (req, res) {
-        res.render(path.join(__dirname, "../public/results.handlebars"));
+        res.render(path.join(__dirname, "../view/results.handlebars"));
     });
 
     // API Routes
