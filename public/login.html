@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css"/>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
-
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/mystyle.css">
+    
+    <title>Login</title>
 </head>
 <body>
 
@@ -15,27 +15,29 @@
         <div class="hero-body">
           <div class="container">
 
-            <div class="signUpForm">
+            <img class="paper" src="../assets/images/quiz_background.png">
+
+            <div class="loginForm">
                 <div class="field">
-                    <label class="label">New Username</label>
+                    <label class="label">Username</label>
                     <div class="control">
-                    <input class="input" type="text" placeholder="New Username">
+                    <input class="input" type="text" placeholder="username">
                     </div>
                 </div>
                 
                 <div class="field">
-                    <label class="label">New Password</label>
+                    <label class="label">Password</label>
                     <div class="control">
-                    <input class="input" type="text" placeholder="New Password">
+                    <input class="input" type="text" placeholder="password">
                     </div>
                 </div>
                 
                 <div class="field is-grouped">
                     <div class="control">
-                    <button class="button is-link confirmSignUpBtn">Sign Up!</button>
+                    <button class="button is-link submitBtn">Login!</button>
                     </div>
                     <div class="control">
-                    <button class="button is-link is-light signUpCancelBtn">Cancel</button>
+                    <button class="button is-link is-light loginCancelBtn">Cancel</button>
                     </div>
                 </div>
                 </div>
@@ -45,7 +47,7 @@
         </div>
       </section>
 
-    <script type="text/javascript" src="script.js"></script>
+      <script type="text/javascript" src="/public/js/script.js"></script>
 </body>
 </html>
 
