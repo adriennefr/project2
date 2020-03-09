@@ -15,17 +15,30 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 len: [1, 15]
+            }
+        },
+
+        hashed: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
+
+        salt: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
+
+        total_wins: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                len: [1, 1000]
 
             }
         },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 10]
-            }
-        }
+    
     });
+
     return User;
 };
 
