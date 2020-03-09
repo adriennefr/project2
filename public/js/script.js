@@ -31,7 +31,17 @@ $(document).ready(function () {
     let score = 0;
     let input = "";
     let answer;
-  
+    
+    // function mediaQuery(x) {
+    //   if (x.matches) {
+    //     $("#bubble").css("top", "-530px")
+    //   }
+    // }
+
+    // let x = window.matchMedia("max-width: 700px")
+    // mediaQuery(x);
+    // x.addEventListener(mediaQuery)
+
     function makeBubble(qArr, i) {
       if (!i) {
         $("#qDiv").text(qArr[i].q);
@@ -47,14 +57,14 @@ $(document).ready(function () {
           palettes[Math.floor(Math.random() * palettes.length)]
         );
         let randx = Math.floor(Math.random() * 60 + 20);
-        console.log(randx);
+        // console.log(randx);
         $("#bubble").css("left", `${randx}%`);
       });
     }
   
-    function gameInit(rounds, diff) {
+    function gameInit(rounds) {
       for (let i = 0; i < rounds; i++) {
-        makeBubble(qMaker(rounds, diff), i);
+        makeBubble(qMaker(rounds), i);
       }
     }
   
@@ -67,12 +77,12 @@ $(document).ready(function () {
           : key === "Backspace"
             ? (input = input.slice(0, -1))
             : (input += key);
-        $("#answer").text(input);
+        $("#answer").text("Your Answer: " + input);
       }
     });
   
     function submitAnswer() {
-      console.log(answer);
+      // console.log(answer);
       parseInt(input) === answer
         ? correct()
         : wrong();
@@ -91,6 +101,24 @@ $(document).ready(function () {
       $("#qDiv").text("Wrong")
       setTimeout(()=>$("#bubble").stop(false, true), 800)
     } 
+
+    // function loadResultsPage() {
+      
+    //   let lastQuestion = qArr[qArr.length-1];;
+    //   if (lastQuestion) {
+    //     if (user1.score > user2.score) {
+    //       //send user1 to resultsWin page
+    //       //send user2 to resultsLose page
+    //     } 
+    //     else if (user2.score > user1.score) {
+    //       //send user2 to resultsWin page
+    //       //send user1 to resultsLose page
+    //     }
+    //     else if (user1.score === user2.score) {
+    //       //send both users to winner page
+    //     }
+    //   }
+    // }
   });
   
 

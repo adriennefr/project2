@@ -1,3 +1,4 @@
+
 $(".loginBtn").on("click", function(event) {
     event.preventDefault();
 
@@ -24,7 +25,9 @@ $(".loginCancelBtn").on("click", function(event) {
 
 })
 
+
 $("#confirmSignUpBtn").on("click", function(event) {
+
     event.preventDefault();
 
     console.log("signup clicked")
@@ -41,13 +44,14 @@ $("#confirmSignUpBtn").on("click", function(event) {
         type: "POST",
         data: data
       }).then(
+
         function(data) {
           if(typeof data.redirect == "string") {
               window.location = data.redirect
           }
-        }
       );
 })
+
 
 $(".signUpCancelBtn").on("click", function(event) {
     event.preventDefault();
