@@ -160,7 +160,7 @@
     padding: 0;
 }
 
-.container {
+.container-parallax {
     width: 100%;
     height: 100vh;
     background: url(images/Artboard-1.jpg);
