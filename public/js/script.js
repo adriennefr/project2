@@ -25,10 +25,10 @@ $(document).ready(function () {
       "8",
       "9",
       "Enter",
-      "Backspace",
-      "-"
+      "Backspace"
     ];
   
+    let score = 0;
     let input = "";
     let answer;
   
@@ -84,6 +84,8 @@ $(document).ready(function () {
     function correct() {
       $('#qDiv').text('CORRECT!')
       setTimeout(()=>$("#bubble").stop(false, true),800)
+      score = score + 5;
+      console.log(score)
     }
     function wrong() {
       $("#qDiv").text("Wrong")
