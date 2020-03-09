@@ -1,40 +1,30 @@
 let db = require("../models");
+console.log(db.User);
 
+let passport = require('./passport');
 
+let path = require('path');
 // Routes
 // =============================================================
 module.exports = function (app) {
 
 
     // HTML Routes
-    // =============================================================
-
-    // app.get("/", function (req, res) {
-    //     res.render(path.join(__dirname, "../public/landing.html"));
-    // });
-
-    // app.get("/login", function (req, res) {
-    //     res.render(path.join(__dirname, "../public/login.html"));
-    // });
-
-    // app.get("/signup", function (req, res) {
-    //     res.render(path.join(__dirname, "../public/signup.html"));
-    // });
 
     app.get("/homepage", function (req, res) {
-        res.render(path.join(__dirname, "../public/homepage.handlebars"));
+        res.render("homepage");
     });
 
     app.get("/lobby", function (req, res) {
-        res.render(path.join(__dirname, "../public/lobby.handlebars"));
+        res.render("lobby");
     });
 
     app.get("/questions", function (req, res) {
-        res.render(path.join(__dirname, "../public/questions.handlebars"));
+        res.render("questions");
     });
 
     app.get("/results", function (req, res) {
-        res.render(path.join(__dirname, "../public/results.handlebars"));
+        res.render("results");
     });
 
     // API Routes
@@ -43,59 +33,77 @@ module.exports = function (app) {
     // Get User Route
     app.get("/api/user/:id", function (req, res) {
         let id = req.params.id
-        // findAll returns all entries for a table when used with no options
-        db.user.findOne({id: id}).then(function (results) {
-            // We have access to the users as an argument inside of the callback function
-            res.json(results);
-        });
-    });
-
-    // Get Avatar Route
-    app.get("/api/user/:id/avatar", function (req, res) {
-        let id = req.params.id;
-        db.user.findOne(id).then(function (results) {
+        
+        db.User.findAll({
+            where: {
+                id: id
+            }
+        }).then(function (results) {
+            
             res.json(results);
         });
     });
 
     // Sign Up Route, Create New User
-    app.post("/api/user", function (req, res) {
-        console.log("User Data:");
-        console.log(req.body);
-        // My hash logic goes here
-        let hashedPassword = create(req.body.password);
+    app.post("/api/user", async function (req, res) {
 
-        db.user.create({
-            name: req.body.name,
+        let hashedPassword = await passport.create(req.body.password);
+        let avatar = 'assets/images/avatar.jpg';
+        // let avatar = 
+
+        db.User.create({
             username: req.body.username,
-            hased: hashedPassword.hash,
+            hash: hashedPassword.hash,
             salt: hashedPassword.salt,
-            avatar: req.body.avatar,
-            totalWins: 0
+            avatar: avatar,
+            total_wins: req.body.total_wins
+
         }).then(function (results) {
-            res.end();
+            res.json(results);
+        });
+    });
+
+    // Login Route, Verify User
+    app.post("/api/user/username", function (req, res) {
+        console.log(req.body)
+
+        // let hashedPassword = create(req.body.password);
+        let userName = req.body.username;
+
+        db.User.findAll({
+            where: {
+                uesername: userName
+            }
+        }).then(function (results) {
+
+            if (passport.verify(req.body.password, results.hash, results.salt)) {
+                res.redirect("/homepage")
+            } else {
+                return res.status(404).end();
+            };
+
         });
     });
 
     // Put method to Update Total Wins
-    app.put("/api/user/:id", function(req, res) {
+    app.put("/api/user/:id", function (req, res) {
 
         // we use where to describe which objects we want to update
-        db.user.update({
-          totalWins: req.body.totalWins,
+        db.User.update({
+            totalWins: req.body.totalWins,
         }, {
-          where: {
-            id: req.body.id
-          }
-        }).then(function(results) {
-          res.json(results);
+            where: {
+                id: req.body.id
+            }
+        }).then(function (results) {
+            res.json(results);
         })
-          .catch(function(err) {
-          // Whenever a validation or flag fails, an error is thrown
-          // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-            res.json(err);
-          });
-      });
+            .catch(function (err) {
+                // Whenever a validation or flag fails, an error is thrown
+                // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+                res.json(err);
+            });
+    });
 
 
 
@@ -103,7 +111,7 @@ module.exports = function (app) {
     app.delete("/api/user/:id", function (req, res) {
         console.log("User ID:");
         console.log(req.params.id);
-        db.user.destroy({
+        db.User.destroy({
             where: {
                 id: req.params.id
             }

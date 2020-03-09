@@ -3,13 +3,6 @@ let sequelize = require("sequelize");
 
 module.exports = function (sequelize, DataTypes) {
     let User = sequelize.define("User", {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 20]
-            }
-        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -18,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
 
-        hashed: {
+        hash: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
@@ -26,6 +19,11 @@ module.exports = function (sequelize, DataTypes) {
         salt: {
             type: DataTypes.TEXT,
             allowNull: false,
+        },
+
+        avatar: {
+            type: DataTypes.TEXT,
+            allowNUll: false,
         },
 
         total_wins: {
