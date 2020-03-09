@@ -1,16 +1,16 @@
 
 $(document).ready(function () {
     const palettes = [
-      "#f8f3ce",
-      "#332252",
-      "#c31908",
-      "#5c9621",
-      "#f4a307",
-      "#e6edf8",
-      "#79b6e2",
-      "#96c6ea",
-      "#9098a4",
-      "#a2a4aa"
+      "#FF0000",
+      "#29ABE1",
+      "#F7921E",
+      "#8BC53E",
+      "#0070BB",
+      "#FF00FF",
+      "#F05A23",
+      "#EC1E79",
+      "#662C91",
+      "#57F27F"
     ];
   
     const allowedKeys = [
