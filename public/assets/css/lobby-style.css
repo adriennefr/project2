@@ -1,5 +1,5 @@
 .hero-body {
-    background-image: url("./assets/images/greenBackground.jpg");
+    background-image: url("../images/greenBackground.jpg");
     background-size: cover;
 }
 /* styling for landing page */
@@ -97,4 +97,18 @@
     position: absolute;
     top: 17%;
     left: 43%;
+}
+.user1 {
+    position: absolute;
+    right: 57%;
+    
+}
+.user2 {
+    position: absolute;
+    right: 30%;
+}
+#timer {
+    position: absolute;
+    bottom: 20%;
+    right: 38%;
 }
