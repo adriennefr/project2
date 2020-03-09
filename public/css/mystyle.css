@@ -27,14 +27,14 @@
 }
 
 #loginBtn {
-    left: 38%;
-    bottom: 13%;
+    left: 35%;
+    bottom: 15%;
     background-color: rgb(153, 214, 62);
 }
 
 #signUpBtn {
-    left: 55%;
-    bottom: 13%;
+    left: 53%;
+    bottom: 15%;
     background-color: rgb(255, 176, 7);
 }
 
@@ -69,11 +69,11 @@
 #answer {
     border-radius: 5px;
     position: absolute;
-    left:38%;
+    left:40%;
     bottom:20%;
     font-size:30px;
     text-align: center; 
-    background-color: blueviolet;
+    background-color: rgb(167, 109, 221);
     width: 20%;
     height:50px;
     box-shadow: 10px 10px 5px grey;
