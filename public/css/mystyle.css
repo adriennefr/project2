@@ -152,3 +152,25 @@
         padding: 0%;
     }
   }
+
+  /* landing page styles */
+
+  body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: url(images/Artboard-1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+
+.scene {
+  width: 25%;
+}
+
