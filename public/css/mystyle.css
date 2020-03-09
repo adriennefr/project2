@@ -1,5 +1,5 @@
 .hero-body {
-    background-image: url("../../assets/images/greenBackground.jpg");
+    background-image: url("../images/greenBackground.jpg");
     background-size: cover;
 }
 
@@ -27,14 +27,14 @@
 }
 
 #loginBtn {
-    left: 38%;
-    bottom: 13%;
+    left: 35%;
+    bottom: 15%;
     background-color: rgb(153, 214, 62);
 }
 
 #signUpBtn {
-    left: 55%;
-    bottom: 13%;
+    left: 53%;
+    bottom: 15%;
     background-color: rgb(255, 176, 7);
 }
 
@@ -44,6 +44,21 @@
     top: 30%;
     left: 37%;
     width: 30%;
+}
+
+/* styling for lobby page */
+.user1 {
+    position: absolute;
+    right: 57%;
+}
+.user2 {
+    position: absolute;
+    right: 30%;
+}
+#timer {
+    position: absolute;
+    bottom: 20%;
+    right: 38%;
 }
 
 /*styling for questions page */
@@ -69,11 +84,11 @@
 #answer {
     border-radius: 5px;
     position: absolute;
-    left:38%;
+    left:40%;
     bottom:20%;
     font-size:30px;
     text-align: center; 
-    background-color: blueviolet;
+    background-color: rgb(167, 109, 221);
     width: 20%;
     height:50px;
     box-shadow: 10px 10px 5px grey;
@@ -119,3 +134,21 @@
     top: 17%;
     left: 43%;
 }
+
+/* resizing landing page */
+@media only screen and (max-width: 600px) {
+    
+    .hero-body {
+        background-image: url("../images/greenBackgroundMobile.jpg");
+        background-size: cover;
+    }
+    
+    .paper {
+        display: none;
+    }
+
+    #loginBtn, #signUpBtn {
+        width: 10%;
+        padding: 0%;
+    }
+  }
