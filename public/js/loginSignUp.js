@@ -1,4 +1,5 @@
-$("loginBtn").on("click", function(event) {
+
+$(".loginBtn").on("click", function(event) {
     event.preventDefault();
 
     let username = $(".logininput").val().trim()
@@ -19,12 +20,14 @@ $("loginBtn").on("click", function(event) {
       );
 })
 
-$("loginCancelBtn").on("click", function(event) {
+$(".loginCancelBtn").on("click", function(event) {
     event.preventDefault();
 
 })
 
-$("confirmSignUpBtn").on("click", function(event) {
+
+$("#confirmSignUpBtn").on("click", function(event) {
+
     event.preventDefault();
 
     console.log("signup clicked")
@@ -41,13 +44,16 @@ $("confirmSignUpBtn").on("click", function(event) {
         type: "POST",
         data: data
       }).then(
-        function() {
-          location.redirect("/homepage");
-        }
+
+        function(data) {
+          if(typeof data.redirect == "string") {
+              window.location = data.redirect
+          }
       );
 })
 
-$("signUpCancelBtn").on("click", function(event) {
+
+$(".signUpCancelBtn").on("click", function(event) {
     event.preventDefault();
 
 })
