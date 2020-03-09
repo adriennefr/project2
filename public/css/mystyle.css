@@ -14,9 +14,13 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 80%;
     top: 0;
     left: 0;
+}
+
+.mobileTitle {
+    display: none;
 }
 
 #loginBtn, #signUpBtn {
@@ -85,7 +89,7 @@
     border-radius: 5px;
     position: absolute;
     left:40%;
-    bottom:20%;
+    bottom:45%;
     font-size:30px;
     text-align: center; 
     background-color: rgb(167, 109, 221);
@@ -136,19 +140,82 @@
 }
 
 /* resizing landing page */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     
     .hero-body {
-        background-image: url("../images/greenBackgroundMobile.jpg");
-        background-size: cover;
+        background-image: url("../images/background.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
     }
+
     
     .paper {
         display: none;
     }
 
+    .mobileTitle {
+        display: block;
+        bottom: 5%;
+    }
+
     #loginBtn, #signUpBtn {
         width: 10%;
         padding: 0%;
+        display: inline-block;
+        position: absolute;
+    }
+
+    #loginBtn {
+        left: 20%;
+        top: 10%;
+        background-color: rgb(153, 214, 62);
+        width: 30%;
+    }
+    
+    #signUpBtn {
+        left: 55%;
+        top: 10%;
+        background-color: rgb(255, 176, 7);
+        width: 30%;
+    }
+
+    .loginForm, .signUpForm {
+        position: absolute;
+        top: 30%;
+        left: 23%;
+        width: 60%;
+        height: 40%;
+    }
+
+    #bubble {
+        height:150px; 
+        width:150px; 
+        border-radius: 75px; 
+        background-color: #332252; 
+        position: absolute; 
+        top: -530px; 
+        left:45%
+    }
+
+    .lose, .win {
+        width: 70%;
+        bottom: -400%;
+        left: 20%;
+    }
+
+    .playAgainBtn {
+        width: 60%;
+        position: absolute;
+        bottom: -1000%;
+        left: 22%;
+        display: block;
+    }
+    
+    .homeBtn {
+        width: 40%;
+        position: absolute;
+        bottom: -700%;
+        left: 30%;
+        display: block;
     }
   }
