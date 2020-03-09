@@ -29,6 +29,7 @@ module.exports = function (sequelize, DataTypes) {
         total_wins: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
             validate: {
                 len: [1, 1000]
 

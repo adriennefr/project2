@@ -60,7 +60,7 @@ $(document).ready(function () {
   
     $(document).keyup(function (e) {
       let key = e.key;
-      console.log(key);
+      // console.log(key);
       if (allowedKeys.includes(key)) {
         key === "Enter"
           ? submitAnswer()

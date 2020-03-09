@@ -59,7 +59,7 @@ module.exports = function (app) {
             total_wins: req.body.total_wins
 
         }).then(function (results) {
-            res.json(results);
+            res.send({redirect: "/homepage"})
         });
     });
 
