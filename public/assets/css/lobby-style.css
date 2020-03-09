@@ -1,5 +1,5 @@
 .hero-body {
-    background-image: url("assets/images/greenBackground.jpg");
+    background-image: url("./assets/images/greenBackground.jpg");
     background-size: cover;
 }
 /* styling for landing page */
