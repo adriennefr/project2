@@ -17,23 +17,48 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-<<<<<<< HEAD
+server.listen(PORT, function () {
+  console.log("Server listening on: http://localhost:" + PORT);
+});
 
-=======
-// Routes: Will be set up in quizController.js
-// let routes = require("./controllers/quizController");
+let user1 = undefined;
+let user2 = undefined;
 
-// app.use(routes);
+io.on('connection', function (socket) {
+  console.log('connection');
+  let choice;
 
-
->>>>>>> master
-server.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:" + PORT);
+  socket.on('ingame', function(data) {
+    switch(data.msg) {
+      case 'choice':
+        io.emit('ingame', {user:data.user, choice:data.choice});
+        break;
+    }
   });
-
-  io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
-    });
+  socket.on('inlobby', function (data) {
+    console.log(user1);
+    console.log(user2);
+    if(user1 && user2) {
+      console.log('wooops, already have two user');
+      return;
+    }
+    console.log(data);
+    if(!user1) {
+      user1 = {name: data.name, socket: socket};
+      socket.emit('inlobby',{msg:'you user1'});
+    } else {
+      user2 =  {name: data.name, socket: socket};
+      socket.emit('inlobby',{msg:'you user2'});
+      io.emit('inlobby',{msg:'start'});
+    }
   });
+  socket.on('disconnect',function() {
+    if(user1 && user1.socket === socket) {
+      console.log('user1 disconnected');
+      user1 = undefined;
+    } else if(user2 && user2.socket === socket) {
+      user2 = undefined;
+      console.log('user2 disconnected');
+    }
+  })
+});

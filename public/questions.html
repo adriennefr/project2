@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css"/>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/mystyle.css">
-    
-    <title>Quiz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css" />
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/mystyle.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    let socket = io();
+
+    socket.emit('inlobby',{name:'baz'});
+    socket.on('inlobby', function (data) {
+      console.log(data);
+      if(data.msg === 'start') {
+        alert('start game');
+      }
+      // console.log(data);
+      // socket.emit('inlobby', { my: data });
+    });
+  </script>
+
+  <title>Quiz</title>
 </head>
+
 <body>
 
-    <section class="hero is-success is-fullheight" id="bigImage">
-        <div class="hero-body">
-          <div class="container">
-            <img class="paper" src="/images/quiz_background.png">
+  <section class="hero is-success is-fullheight" id="bigImage">
+    <div class="hero-body">
+      <div class="container">
+        <img class="paper" src="../assets/images/quiz_background.png">
 
-            <div id="bubble">
-                <div id="qDiv">
-                </div>
-            </div>
-            <div id="answer"></div>
-        </div>
+        <div id="bubble">
+          <div id="qDiv">
           </div>
         </div>
-      </section>
+        <div id="answer"></div>
+      </div>
+    </div>
+    </div>
+  </section>
 
-    <script type="text/javascript" src="../algo/algo.js"></script>
-    <script type="text/javascript" src="./js/script.js"></script>
+  <script type="text/javascript" src="../algo/index.js"></script>
+  <script type="text/javascript" src="./js/script.js"></script>
 </body>
-</html>
 
+</html>
