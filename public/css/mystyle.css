@@ -1,5 +1,5 @@
 .hero-body {
-    background-image: url("../../assets/images/greenBackground.jpg");
+    background-image: url("../images/greenBackground.jpg");
     background-size: cover;
 }
 
@@ -44,6 +44,21 @@
     top: 30%;
     left: 37%;
     width: 30%;
+}
+
+/* styling for lobby page */
+.user1 {
+    position: absolute;
+    right: 57%;
+}
+.user2 {
+    position: absolute;
+    right: 30%;
+}
+#timer {
+    position: absolute;
+    bottom: 20%;
+    right: 38%;
 }
 
 /*styling for questions page */
@@ -119,3 +134,21 @@
     top: 17%;
     left: 43%;
 }
+
+/* resizing landing page */
+@media only screen and (max-width: 600px) {
+    
+    .hero-body {
+        background-image: url("../images/greenBackgroundMobile.jpg");
+        background-size: cover;
+    }
+    
+    .paper {
+        display: none;
+    }
+
+    #loginBtn, #signUpBtn {
+        width: 10%;
+        padding: 0%;
+    }
+  }
