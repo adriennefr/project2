@@ -64,8 +64,8 @@ module.exports = function (app) {
     app.post("/api/user", async function (req, res) {
 
         let hashedPassword = await passport.create(req.body.password);
-        let avatar = 'assets/images/avatar.jpg';
-        // let avatar =
+      
+        let avatar = `robot_${Math.ceil(Math.random()*4)}.jpg`
 
         db.User.create({
             username: req.body.username,

@@ -1,5 +1,5 @@
 
-
+console.log('JS LOADED HOMEPAGE')
 $("#rtp-button").on("click", function(){
     // console.log("clicked");
     $("#rtp-button").attr("disabled", "disabled");
