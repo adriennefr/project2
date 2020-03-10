@@ -88,19 +88,15 @@ body {
 /* styling for dashboard page */
 #rtp-button {
     position: absolute;
-    top: 60%;
+    top: 47%;
     left: 45%;
-}
-
-#dashboardAvatar{
-    left: 45%;
-    top: 30%;
 }
 
 
 #dashboardUsername {
-    left: 45%;
-    top: 50%;
+    left: 47%;
+    top: 37%;
+    position: absolute;
 }
 
 /* styling for lobby page */
