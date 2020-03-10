@@ -11,14 +11,9 @@
   <script>
     let socket = io();
 
-    socket.emit('inlobby',{name:'baz'});
-    socket.on('inlobby', function (data) {
+    socket.emit('ingame',{name: username, choice:data.choice});
+    socket.on('ingame', function (data) {
       console.log(data);
-      if(data.msg === 'start') {
-        alert('start game');
-      }
-      // console.log(data);
-      // socket.emit('inlobby', { my: data });
     });
   </script>
 

@@ -66,7 +66,7 @@ module.exports = function (app) {
         let hashedPassword = create(req.body.password);
 
         db.user.create({
-            name: req.body.name,
+            
             username: req.body.username,
             hashed: hashedPassword.hash,
             salt: hashedPassword.salt,

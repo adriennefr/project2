@@ -1,3 +1,16 @@
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+        
+        socket.emit('inlobby', {name: 'baz'});
+        socket.on('inlobby', function (data) {
+            console.log(data);
+            if(data.msg === 'start') {
+                alert('start game');
+            }
+        }) 
+    </script>
+
     <section class="hero is-success is-fullheight">
         <div class="hero-body">
             <img src="./assets/images/paperWithDoodles.png" class="paper">
@@ -17,3 +30,4 @@
                 </div>
         </div>
     </section>
+
