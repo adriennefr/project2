@@ -53,6 +53,7 @@ module.exports = function (app) {
     });
 
     // Sign Up Route, Create New User
+
     app.post("/api/user", async function (req, res) {
 
         let hashedPassword = await passport.create(req.body.password);
@@ -62,6 +63,7 @@ module.exports = function (app) {
         db.User.create({
             username: req.body.username,
             hash: hashedPassword.hash,
+
             salt: hashedPassword.salt,
             avatar: avatar,
             total_wins: req.body.total_wins
