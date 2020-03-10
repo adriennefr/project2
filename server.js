@@ -65,7 +65,10 @@ io.on('connection', function (socket) {
   })
 
   socket.on('inlobby', function (data) {
-    users.push({ name: data.name, score: 0});
+    if(users.length<2){
+      users.push({ name: data.name, score: 0, avatar: data.avatar});
+    }
+    
     io.emit('inlobby',{ users: users });
   });
 

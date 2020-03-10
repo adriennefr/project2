@@ -2,7 +2,7 @@ let timeLeft = 10;
 let users = [];
 let socket = io();
 
-socket.emit('inlobby', { name: currentUser, score: 0 });
+socket.emit('inlobby', { name: currentUser, avatar: avatar, score: 0  });
 socket.on('inlobby', function (data) {
   console.log('someone has joined', data);
 
@@ -14,7 +14,7 @@ socket.on('inlobby', function (data) {
       console.log( user, i );
       $('.users').append('<div class="user' + (i + 1) +'">\n' +
         '          <figure class="image is-128x128">\n' +
-        '              <img class="is-rounded figure-1" src="https://bulma.io/images/placeholders/128x128.png">\n' +
+        '              <img class="is-rounded figure-1" src="images/'+avatar+'">\n' +
         '          </figure>\n' +
         '          <h2 class="title is-4 has-text-danger">' + user.name + '</h2>\n' +
         '      </div>')
