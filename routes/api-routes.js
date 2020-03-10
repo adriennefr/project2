@@ -1,5 +1,6 @@
 let db = require("../models");
 console.log(db.User);
+let axios = require('axios')
 
 let passport = require('./passport');
 
@@ -12,7 +13,9 @@ module.exports = function (app) {
     // HTML Routes
 
     app.get("/homepage", function (req, res) {
-        res.render("homepage");
+
+
+        res.render('homepage');
     });
 
     app.get("/lobby", function (req, res) {
@@ -26,6 +29,11 @@ module.exports = function (app) {
     app.get("/results", function (req, res) {
         res.render("results");
     });
+
+    app.get('/login', function(req,res){
+        res.sendFile(path.join(__dirname, '../public/login.html'))
+    })
+
 
     // API Routes
     // =========================================================
@@ -64,7 +72,7 @@ module.exports = function (app) {
     });
 
     // Login Route, Verify User
-    app.post("/api/user/username", function (req, res) {
+    app.post("/api/user/username", function (req, res, next) {
         console.log(req.body)
 
         // let hashedPassword = create(req.body.password);
@@ -72,16 +80,25 @@ module.exports = function (app) {
 
         db.User.findAll({
             where: {
-                uesername: userName
+                username: userName
             }
         }).then(function (results) {
-
-            if (passport.verify(req.body.password, results.hash, results.salt)) {
-                res.redirect("/homepage")
-            } else {
-                return res.status(404).end();
-            };
-
+            let result = results[0].dataValues
+            passport.verify(req.body.password,result.salt, function(hash){
+                if(result.hash === hash.hash){
+                    res.redirect(303, '/homepage')
+                }else{
+                    res.send('Password Incorrect')
+                }
+            })
+            // if (passport.verify(req.body.password, result.hash, result.salt)) {
+            //     console.log('success!')
+            //     res.redirect("/homepage")
+            // } else {
+            //     return res.status(404).end();
+            // };
+        }).catch(err=> {
+            res.send(err)
         });
     });
 

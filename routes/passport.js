@@ -17,10 +17,9 @@ module.exports = {
   // the function returns true of the user entered the
   // correct password
   //
-  verify: async function (password, hashed, salt) {
+  verify: async function (password, salt, cb) {
     let hash = await this.hash(password, salt);
-
-    return hashed === hash.hash;
+    cb(hash)
   },
 
   hash: async function (password, salt) {

@@ -2,6 +2,8 @@
 $(".loginBtn").on("click", function(event) {
     event.preventDefault();
 
+    console.log("login")
+
     let username = $(".logininput").val().trim()
     let password = $(".loginPassInput").val().trim()
     
@@ -10,19 +12,23 @@ $(".loginBtn").on("click", function(event) {
         password: password
     }
 
-    $.ajax("/api/user", {
+    $.ajax("/api/user/username", {
         type: "POST",
         data: data
       }).then(
-        function() {
-          location.redirect("/homepage");
+          function(data) {
+            console.log(data);
+            window.location.replace(data)
+            // console.log(data.user.id)
+            // if(typeof data.redirect == "string") {
+            //     window.location.replace(`/homepage/${data.user.id}`)
+            // }
         }
       );
 })
 
 $(".loginCancelBtn").on("click", function(event) {
     event.preventDefault();
-
 })
 
 
@@ -44,12 +50,11 @@ $("#confirmSignUpBtn").on("click", function(event) {
         type: "POST",
         data: data
       }).then(
-
         function(data) {
           if(typeof data.redirect == "string") {
               window.location = data.redirect
           }
-      );
+        });
 })
 
 
