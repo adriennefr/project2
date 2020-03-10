@@ -19,9 +19,13 @@
   },
   "homepage": "https://github.com/adriennefr/project2#readme",
   "dependencies": {
+    "axios": "^0.19.2",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.5",
     "socket.io": "^2.3.0"
   }
 }

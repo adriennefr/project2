@@ -35,6 +35,7 @@ switch(op){
     return {q:q, a:a}
 }
 
+
 function qMaker(q, diff) {
     const qArr = []
     for(let i = 0; i < 10; i++){
@@ -42,8 +43,8 @@ function qMaker(q, diff) {
     }
     return qArr;
 }
+// console.log(qMaker(10, 2));
 
-// console.log(qArr)
 
 function randomQuestion(arr) {
     let question = arr[Math.floor(Math.random() * arr.length)]
