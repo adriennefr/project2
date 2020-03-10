@@ -2,10 +2,7 @@ let exphbs = require("express-handlebars");
 let express = require("express");
 let db = require("./models");
 let sequelize = require("sequelize");
-<<<<<<< HEAD
 var session = require('express-session')
-=======
->>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 
 
 // Local Variables
@@ -18,25 +15,14 @@ let io = require('socket.io')(server);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-<<<<<<< HEAD
 app.use(session({
   secret: 'keyboard cat',
 }))
-=======
->>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 // app.use(routes(app));
 
 // Template Engine: Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
-<<<<<<< HEAD
-=======
-
-server.listen(PORT, function () {
-  console.log("Server listening on: http://localhost:" + PORT);
-});
->>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 
 let users = []
 let doneUsers = []
@@ -92,22 +78,10 @@ require("./routes/api-routes")(app);
 
 // Server Listening
 db.User.sync().then(function() {
-<<<<<<< HEAD
+
   server.listen(PORT, function() {
     console.log("Server listening on: http://localhost: " + PORT);
   });
 });
-=======
-  app.listen(PORT, function() {
-    console.log("Server listening on: http://localhost: " + PORT);
-  });
-});
 
-  io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
-    });
-  });
 
->>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234

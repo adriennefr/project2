@@ -1,33 +1,16 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        let socket = io();
-        
-        socket.emit('inlobby', {name: 'baz'});
-        socket.on('inlobby', function (data) {
-            console.log(data);
-            if(data.msg === 'start') {
-                alert('start game');
-            }
-        }) 
+        let currentUser = '{{user.username}}';
     </script>
+    <script type="text/javascript" src="/js/lobby.js"></script>
+
 
     <section class="hero is-success is-fullheight">
         <div class="hero-body">
-            <img src="./assets/images/paperWithDoodles.png" class="paper">
-                <div class="user1">
-                    <figure class="image is-128x128">
-                        <img class="is-rounded figure-1" src="https://bulma.io/images/placeholders/128x128.png">
-                    </figure>
-                    <h2 class="title is-4 has-text-danger">Username Here</h2>    
-                </div>
-                <div class="user2">
-                    <figure class="image is-128x128">
-                        <img class="is-rounded figure-2" src="https://bulma.io/images/placeholders/128x128.png">
-                    </figure>
-                    <h2 class="title is-4 has-text-danger">Username Here</h2>    
+            <img src="/images/paperWithDoodles.png" class="paper">
+                <div class="users">
                 </div>
                 <div id="timer" class="title is-3 has-text-success">
                 </div>
         </div>
     </section>
-

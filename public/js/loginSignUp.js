@@ -6,7 +6,7 @@ $(".loginBtn").on("click", function(event) {
 
     let username = $(".logininput").val().trim()
     let password = $(".loginPassInput").val().trim()
-    
+
     let data = {
         username: username,
         password: password
@@ -17,12 +17,10 @@ $(".loginBtn").on("click", function(event) {
         data: data
       }).then(
           function(data) {
-            console.log(data);
-            window.location.replace(data)
-            // console.log(data.user.id)
-            // if(typeof data.redirect == "string") {
-            //     window.location.replace(`/homepage/${data.user.id}`)
-            // }
+            console.log(data, 'got something!!');
+            if( data.login === true ) {
+              window.location.replace(`/dashboard`);
+            }
         }
       );
 })
@@ -37,10 +35,10 @@ $("#confirmSignUpBtn").on("click", function(event) {
     event.preventDefault();
 
     console.log("signup clicked")
-   
+
     let username = $(".usernameinput").val().trim()
     let password = $(".passwordinput").val().trim()
-    
+
     let data = {
         username: username,
         password: password
