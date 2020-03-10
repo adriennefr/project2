@@ -31,7 +31,17 @@ $(document).ready(function () {
     let score = 0;
     let input = "";
     let answer;
-  
+    
+    // function mediaQuery(x) {
+    //   if (x.matches) {
+    //     $("#bubble").css("top", "-530px")
+    //   }
+    // }
+
+    // let x = window.matchMedia("max-width: 700px")
+    // mediaQuery(x);
+    // x.addEventListener(mediaQuery)
+
     function makeBubble(qArr, i) {
       if (!i) {
         $("#qDiv").text(qArr[i].q);
@@ -47,32 +57,35 @@ $(document).ready(function () {
           palettes[Math.floor(Math.random() * palettes.length)]
         );
         let randx = Math.floor(Math.random() * 60 + 20);
-        console.log(randx);
+        // console.log(randx);
         $("#bubble").css("left", `${randx}%`);
+        if(i=== qArr.length-1){
+          loadResultsPage()
+        }
       });
     }
   
-    function gameInit(rounds, diff) {
+    function gameInit(rounds) {
       for (let i = 0; i < rounds; i++) {
-        makeBubble(qMaker(rounds, diff), i);
+        makeBubble(qMaker(rounds), i);
       }
     }
   
     $(document).keyup(function (e) {
       let key = e.key;
-      console.log(key);
+      // console.log(key);
       if (allowedKeys.includes(key)) {
         key === "Enter"
           ? submitAnswer()
           : key === "Backspace"
             ? (input = input.slice(0, -1))
             : (input += key);
-        $("#answer").text(input);
+        $("#answer").text("Your Answer: " + input);
       }
     });
   
     function submitAnswer() {
-      console.log(answer);
+      // console.log(answer);
       parseInt(input) === answer
         ? correct()
         : wrong();
@@ -91,6 +104,10 @@ $(document).ready(function () {
       $("#qDiv").text("Wrong")
       setTimeout(()=>$("#bubble").stop(false, true), 800)
     } 
+
+    function loadResultsPage() {
+        // $.ajax call both users send score, serverside returns response. reroute based on who won.
+    }
   });
   
 
