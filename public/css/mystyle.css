@@ -1,5 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url("/images/Artboard-1.jpg");
+}
+.homepageLogin, .homepageSignUp{
+    position: absolute;
+    bottom: 10%;
+}
+
+.container {
+    width: 100% !important;
+    height: 100vh; 
+    background-color: transparent;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.scene {
+  width: 25%;
+}
+
 .hero-body {
-    background-image: url("../images/greenBackground.jpg");
+    background-image: url("/images/greenBackground.jpg");
     background-size: cover;
 }
 
@@ -14,9 +37,17 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 100%;
     top: 0;
     left: 0;
+}
+
+.paper1, .paper2 {
+    width: 80%;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mobileTitle {
@@ -46,8 +77,30 @@
 .loginForm, .signUpForm {
     position: absolute;
     top: 30%;
-    left: 37%;
+    left: 40%;
     width: 30%;
+}
+
+.logininput, .loginPassInput, .usernameinput, .passwordinput {
+    width: 60%;
+}
+
+/* styling for dashboard page */
+#rtp-button {
+    position: absolute;
+    top: 60%;
+    left: 45%;
+}
+
+#dashboardAvatar{
+    left: 45%;
+    top: 30%;
+}
+
+
+#dashboardUsername {
+    left: 45%;
+    top: 50%;
 }
 
 /* styling for lobby page */
@@ -108,28 +161,28 @@
 .win {
     width: 30%;
     position: absolute;
-    bottom: 33%;
+    bottom: 40%;
     left: 35%;
 }
 
 .lose{
     width: 30%;
     position: absolute;
-    bottom: 33%;
+    bottom: 40%;
     left: 37%;
 }
 
 .playAgainBtn {
     width: 20%;
     position: absolute;
-    bottom: 22%;
+    bottom: 30%;
     left: 50%;
 }
 
 .homeBtn {
     width: 14%;
     position: absolute;
-    bottom: 22%;
+    bottom: 30%;
     left: 33%;
 }
 
