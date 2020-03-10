@@ -2,6 +2,10 @@ let exphbs = require("express-handlebars");
 let express = require("express");
 let db = require("./models");
 let sequelize = require("sequelize");
+<<<<<<< HEAD
+var session = require('express-session')
+=======
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 
 
 // Local Variables
@@ -14,56 +18,72 @@ let io = require('socket.io')(server);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+<<<<<<< HEAD
+app.use(session({
+  secret: 'keyboard cat',
+}))
+=======
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 // app.use(routes(app));
 
 // Template Engine: Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+<<<<<<< HEAD
+=======
 
 server.listen(PORT, function () {
   console.log("Server listening on: http://localhost:" + PORT);
 });
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 
-let user1 = undefined;
-let user2 = undefined;
+let users = []
+let doneUsers = []
+
 
 io.on('connection', function (socket) {
-  console.log('connection');
-  let choice;
+  socket.on('questionAnswered', function(data) {
+    // Find user in users array
+    let index = users.findIndex(function (user) {
+      return user.name === data.user
+    });
 
-  socket.on('ingame', function(data) {
-    switch(data.msg) {
-      case 'choice':
-        io.emit('ingame', {user:data.user, choice:data.choice});
-        break;
+    if( data.correct ) {
+      users[index].score += 5;
     }
+
   });
+
+  socket.on('gameFinished', function( data ) {
+    let index = users.findIndex(function (user) {
+      return user.name === data.user
+    });
+
+    doneUsers.push(users[index]);
+
+    if( doneUsers.length >= 2) {
+      let winner = {};
+
+      if( doneUsers[0].score > doneUsers[1].score) {
+        winner = doneUsers[0]
+      } else {
+        winner = doneUsers[1]
+      }
+
+      io.emit('finalScore', { winner: winner });
+
+      // Clear out users
+      users = [];
+    }
+  })
+
   socket.on('inlobby', function (data) {
-    console.log(user1);
-    console.log(user2);
-    if(user1 && user2) {
-      console.log('wooops, already have two user');
-      return;
-    }
-    console.log(data);
-    if(!user1) {
-      user1 = {name: data.name, socket: socket};
-      socket.emit('inlobby',{msg:'you user1'});
-    } else {
-      user2 =  {name: data.name, socket: socket};
-      socket.emit('inlobby',{msg:'you user2'});
-      io.emit('inlobby',{msg:'start'});
-    }
+    users.push({ name: data.name, score: 0});
+    io.emit('inlobby',{ users: users });
   });
+
   socket.on('disconnect',function() {
-    if(user1 && user1.socket === socket) {
-      console.log('user1 disconnected');
-      user1 = undefined;
-    } else if(user2 && user2.socket === socket) {
-      user2 = undefined;
-      console.log('user2 disconnected');
-    }
   })
 });
 
@@ -72,6 +92,12 @@ require("./routes/api-routes")(app);
 
 // Server Listening
 db.User.sync().then(function() {
+<<<<<<< HEAD
+  server.listen(PORT, function() {
+    console.log("Server listening on: http://localhost: " + PORT);
+  });
+});
+=======
   app.listen(PORT, function() {
     console.log("Server listening on: http://localhost: " + PORT);
   });
@@ -84,3 +110,4 @@ db.User.sync().then(function() {
     });
   });
 
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
