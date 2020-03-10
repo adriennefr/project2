@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "Lenaflair123",
-=======
-    "password": "aukai525",
->>>>>>> origin
     "database": "quizMania_db",
     "host": "127.0.0.1",
     "port": 3306,
