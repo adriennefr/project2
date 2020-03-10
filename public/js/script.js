@@ -1,3 +1,14 @@
+let socket = io();
+// This will send the user to the results lose page or win page...
+socket.on('finalScore', function( data ) {
+  console.log( data, currentUser, 'finalScore');
+  if( data.winner && data.winner.name === currentUser ) {
+    window.location.href = '/resultsWin'
+  } else {
+    window.location.href = '/resultsLose'
+  }
+});
+
 
 $(document).ready(function () {
     const palettes = [
@@ -12,7 +23,7 @@ $(document).ready(function () {
       "#662C91",
       "#57F27F"
     ];
-  
+
     const allowedKeys = [
       "0",
       "1",
@@ -27,11 +38,11 @@ $(document).ready(function () {
       "Enter",
       "Backspace"
     ];
-  
+
     let score = 0;
     let input = "";
     let answer;
-    
+
     // function mediaQuery(x) {
     //   if (x.matches) {
     //     $("#bubble").css("top", "-530px")
@@ -50,8 +61,8 @@ $(document).ready(function () {
       $("#bubble").animate({ top: "1000px" }, 15000, function () {
         $("#bubble").css("top", "-150px");
         $('#bubble').css("display", "block");
-        $("#qDiv").text(qArr[i + 1].q);
-        answer = qArr[i + 1].a;
+        $("#qDiv").text(qArr[i].q);
+        answer = qArr[i].a;
         $("#bubble").css(
           "background-color",
           palettes[Math.floor(Math.random() * palettes.length)]
@@ -59,18 +70,19 @@ $(document).ready(function () {
         let randx = Math.floor(Math.random() * 60 + 20);
         // console.log(randx);
         $("#bubble").css("left", `${randx}%`);
-        if(i=== qArr.length-1){
+        console.log(i, qArr.length, 'question loop')
+        if(i === qArr.length -1 ){
           loadResultsPage()
         }
       });
     }
-  
+
     function gameInit(rounds) {
       for (let i = 0; i < rounds; i++) {
         makeBubble(qMaker(rounds), i);
       }
     }
-  
+
     $(document).keyup(function (e) {
       let key = e.key;
       // console.log(key);
@@ -83,17 +95,20 @@ $(document).ready(function () {
         $("#answer").text("Your Answer: " + input);
       }
     });
-  
+
     function submitAnswer() {
       // console.log(answer);
+      let isCorrect = parseInt(input) === answer;
       parseInt(input) === answer
         ? correct()
         : wrong();
       input = "";
       $("#answer").text(input);
+
+      socket.emit('questionAnswered', {user: currentUser, correct: isCorrect })
     }
     gameInit(10, 2);
-  
+
     function correct() {
       $('#qDiv').text('CORRECT!')
       setTimeout(()=>$("#bubble").stop(false, true),800)
@@ -103,13 +118,15 @@ $(document).ready(function () {
     function wrong() {
       $("#qDiv").text("Wrong")
       setTimeout(()=>$("#bubble").stop(false, true), 800)
-    } 
+    }
 
     function loadResultsPage() {
+        console.log('game is done!!!');
+        socket.emit('gameFinished', {user: currentUser });
         // $.ajax call both users send score, serverside returns response. reroute based on who won.
     }
   });
-  
+
 
 //once the document is ready, it should drop bubbles
     //each bubble should have a new question with input area
@@ -139,7 +156,7 @@ $(document).ready(function () {
 //         else if ($answerInput === false) {
 //             changeBackgroundRed();
 //             dropBubbles();
-//         } 
+//         }
 //         else if (isLastQuestion) {
 //             loadResultsPage();
 //         }
