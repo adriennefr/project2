@@ -1,5 +1,8 @@
 let db = require("../models");
+<<<<<<< HEAD
+=======
 console.log(db.User);
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 let axios = require('axios')
 
 let passport = require('./passport');
@@ -12,6 +15,38 @@ module.exports = function (app) {
 
     // HTML Routes
 
+<<<<<<< HEAD
+    app.get("/", function (req, res) {
+        res.render('homepage');
+    });
+
+    app.get("/dashboard", function (req, res) {
+        res.render('dashboard', { user:  req.session.user });
+    });
+
+    app.get("/lobby", function (req, res) {
+        res.render("lobby", { user: req.session.user });
+    });
+
+    app.get("/questions", function (req, res) {
+        res.render("questions", { user: req.session.user });
+    });
+
+    app.get("/resultsLose", function (req, res) {
+        res.render("resultsLose");
+    });
+
+    app.get("/resultsWin", function (req, res) {
+        res.render("resultsWin");
+    });
+
+    app.get('/login', function(req,res){
+        res.render('login');
+    })
+
+    app.get('/signup', function(req,res){
+        res.render('signup');
+=======
     app.get("/homepage", function (req, res) {
 
 
@@ -32,6 +67,7 @@ module.exports = function (app) {
 
     app.get('/login', function(req,res){
         res.sendFile(path.join(__dirname, '../public/login.html'))
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
     })
 
 
@@ -41,31 +77,85 @@ module.exports = function (app) {
     // Get User Route
     app.get("/api/user/:id", function (req, res) {
         let id = req.params.id
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
         db.User.findAll({
             where: {
                 id: id
             }
         }).then(function (results) {
+<<<<<<< HEAD
+
+=======
             
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
             res.json(results);
         });
     });
 
     // Sign Up Route, Create New User
+
     app.post("/api/user", async function (req, res) {
 
         let hashedPassword = await passport.create(req.body.password);
         let avatar = 'assets/images/avatar.jpg';
+<<<<<<< HEAD
+        // let avatar =
+=======
         // let avatar = 
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
 
         db.User.create({
             username: req.body.username,
             hash: hashedPassword.hash,
+
             salt: hashedPassword.salt,
             avatar: avatar,
             total_wins: req.body.total_wins
 
+<<<<<<< HEAD
+        }).then(function (result) {
+            console.log( result.username );
+            req.session.user = {
+                username: result.username,
+                total_wins: result.total_wins,
+                avatar: result.avatar
+            }
+
+            console.log( req.session )
+            res.send({redirect: "/dashboard"})
+        });
+    });
+
+    // Login Route, Verify User
+    app.post("/api/user/username", function (req, res, next) {
+        // let hashedPassword = create(req.body.password);
+        let userName = req.body.username;
+
+        db.User.findAll({
+            where: {
+                username: userName
+            }
+        }).then(function (results) {
+            let result = results[0].dataValues
+
+            console.log( result );
+
+            passport.verify(req.body.password,result.salt, function(hash){
+                if(result.hash === hash.hash){
+                    req.session.user = {
+                        username: result.username,
+                        total_wins: result.total_wins,
+                        avatar: result.avatar
+                    }
+
+                    res.json({ login: true });
+                }else{
+                    res.json({ login: false });
+=======
         }).then(function (results) {
             res.send({redirect: "/homepage"})
         });
@@ -89,6 +179,7 @@ module.exports = function (app) {
                     res.redirect(303, '/homepage')
                 }else{
                     res.send('Password Incorrect')
+>>>>>>> 678caf978fbd4075a42a05a4c700db1120fe5234
                 }
             })
             // if (passport.verify(req.body.password, result.hash, result.salt)) {
