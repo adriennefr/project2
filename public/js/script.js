@@ -59,6 +59,9 @@ $(document).ready(function () {
         let randx = Math.floor(Math.random() * 60 + 20);
         // console.log(randx);
         $("#bubble").css("left", `${randx}%`);
+        if(i=== qArr.length-1){
+          loadResultsPage()
+        }
       });
     }
   
@@ -102,23 +105,9 @@ $(document).ready(function () {
       setTimeout(()=>$("#bubble").stop(false, true), 800)
     } 
 
-    // function loadResultsPage() {
-      
-    //   let lastQuestion = qArr[qArr.length-1];;
-    //   if (lastQuestion) {
-    //     if (user1.score > user2.score) {
-    //       //send user1 to resultsWin page
-    //       //send user2 to resultsLose page
-    //     } 
-    //     else if (user2.score > user1.score) {
-    //       //send user2 to resultsWin page
-    //       //send user1 to resultsLose page
-    //     }
-    //     else if (user1.score === user2.score) {
-    //       //send both users to winner page
-    //     }
-    //   }
-    // }
+    function loadResultsPage() {
+        // $.ajax call both users send score, serverside returns response. reroute based on who won.
+    }
   });
   
 
