@@ -1,10 +1,13 @@
 <section class="hero is-success is-fullheight">
     <div class="hero-body">
         <div class="container">
+
+            <img class="paper" src="/images/paper_main.png">
+
             <figure class="image is-128x128">
-                <img class="is-rounded" src="{{user.avatar}}">
+                <img class="is-rounded" id="dashboardAvatar" src="{{user.avatar}}">
             </figure>
-            <h2 class="title is-3 has-text-danger">{{user.username}}</h2>
+            <h2 class="title is-3 has-text-danger" id="dashboardUsername">{{user.username}}</h2>
             <button id="rtp-button" class="button is-success is-large">Ready to Play!</button>
         </div>
     </div>

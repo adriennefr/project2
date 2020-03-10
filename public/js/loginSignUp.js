@@ -1,4 +1,5 @@
 
+
 $(".loginBtn").on("click", function(event) {
     event.preventDefault();
 
@@ -27,6 +28,9 @@ $(".loginBtn").on("click", function(event) {
 
 $(".loginCancelBtn").on("click", function(event) {
     event.preventDefault();
+
+    window.location.replace("/");
+
 })
 
 
@@ -56,7 +60,8 @@ $("#confirmSignUpBtn").on("click", function(event) {
 })
 
 
-$(".signUpCancelBtn").on("click", function(event) {
+$("#signUpCancelBtn").on("click", function(event) {
     event.preventDefault();
 
+    window.location.replace("/");
 })
